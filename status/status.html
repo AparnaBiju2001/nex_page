@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Status</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js Library -->
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    height: 100vh;
+    background: #FFFFFF;
+    color: black;
+}
+
+.status-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 20px;
+    margin-left: 20px; /* Adjust left spacing */
+    position: fixed; /* Keeps it fixed like a sidebar */
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+}
+
+.status-card {
+    width: 250px;
+    height: 100px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-card:hover {
+    transform: scale(1.05);
+}
+
+.completed { background-color: #28a745; }
+.pending { background-color: #007bff; }
+.in-progress { background-color: #ff9800; }
+.overdue { background-color: #dc3545; }
+
+/* Chart container stays in the center */
+.chart-container {
+    width: 900px; /* Increased width */
+    height: 500px; /* Increased height */
+    background: #FFFFFF;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    margin-left: 350px; /* Adjust position to the right */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Task Status Cards -->
+    <div class="status-container">
+        <div class="status-card completed">✅ Completed: 15</div>
+        <div class="status-card pending">⏳ Pending: 5</div>
+        <div class="status-card in-progress">🚧 In Progress: 7</div>
+        <div class="status-card overdue">❌ Overdue: 2</div>
+    </div>
+
+    <!-- Enlarged Bar Chart -->
+    <div class="chart-container">
+        <canvas id="taskChart"></canvas>
+    </div>
+
+    <script>
+        // Task Data
+        const taskData = {
+            labels: ["Completed", "Pending", "In Progress", "Overdue"],
+            datasets: [{
+                label: "Task Status",
+                data: [15, 5, 7, 2], // Data values
+                backgroundColor: ["#28a745", "#007bff", "#ff9800", "#dc3545"],
+                borderRadius: 8
+            }]
+        };
+
+        // Chart Configuration
+        const config = {
+            type: 'bar',
+            data: taskData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Allows resizing
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Render Chart
+        new Chart(document.getElementById('taskChart'), config);
+    </script>
+</body>
+</html>
