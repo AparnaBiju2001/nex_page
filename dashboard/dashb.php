@@ -47,6 +47,27 @@ if (!isset($_SESSION['admin_username'])) {
     background-color: #d13344; /* Darker shade on hover */
     transform: scale(1.05);
 }
+.logout-button {
+    display: inline-block;
+    padding: 13px 24px;  /* Reduced padding */
+    background-color:#0a0a0a;
+    color: white;
+    font-size: 14px;  /* Smaller font */
+    font-weight: bold;
+    border: none;
+    border-radius: 4px; /* Slightly rounded corners */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    width:100px;
+    margin-left: 1500px;
+}
+
+.logout-button:hover {
+    background-color:#000000;
+    transform: scale(1.05);
+}
+
 </style>
 <body>
     <div class="dashboard-container">
@@ -61,6 +82,7 @@ if (!isset($_SESSION['admin_username'])) {
                     <li><a href="../status/status.html">⌛️ Pending</a></li>
                     <li><a href="../status/status.html">🚧 In Progress</a></li>
                     <li><a href="../status/status.html">❌ Overdue</a></li>
+                    
                 </ul>
                 
                 
@@ -70,8 +92,8 @@ if (!isset($_SESSION['admin_username'])) {
         <main class="main-content">
             
             <section class="content">
-                <h2>Welcome,ADMIN</h2>
-    <a href="logout.php">Logout</a>
+                <h2>WELCOME ADMIN</h2>
+                <a href="logout.php" class="logout-button">Logout</a>
                 <h3>Enquiries Table</h3>
                 <div class="table-container">
                     <table>
@@ -88,8 +110,10 @@ if (!isset($_SESSION['admin_username'])) {
                         <tbody id="table-data">
                             <!-- Data will be inserted here -->
                         </tbody>
+                        
                     </table>
                 </div>
+                
             </section>
             <!-- <section class="chart-card">
                 <h3>Profit & Expenses</h3>
@@ -143,9 +167,6 @@ if (!isset($_SESSION['admin_username'])) {
 });
 
     </script>
-    
-    
-
     
 
 </body>
